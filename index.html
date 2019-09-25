@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Pacman, an arcade classic built by Tom Tidswell">
+    <meta name="keywords" content="Pacmen,Javascript,Node,Node.js,HTML,CSS">
+    <meta name="author" content="Tom Tidswell">
+    
+    <meta property="og:title" content="Pacman, an arcade classic built by Tom Tidswell" />
+    <meta property="og:image" content="https://www.tomtidswell.co.uk/img/pacman.jpg" />
+    <meta property="og:description" content="Portfolio: Tom Tidswell, a London based full stack software engineer" />
+    <meta property="og:url" content="https://sei-pacman.herokuapp.com" />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="Tom">
+    <meta property="profile:last_name" content="Tidswell">
+
+    <title>Pacman</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Damion|Kanit:700i,900&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color: black;">
+    <section class="scoreboard">
+      <div class="score"></div>
+      <div class="lives"></div>
+      <div class="high"></div>
+    </section>
+    <section class="grid">
+      <article class="message-overlay"></article>
+      <article class="squares"></article>
+      <article class="player"></article>
+      <table class="high-scores hide">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Score</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <article class="d-pad">
+      <div class="d-pad-row">
+        <div class="up"></div>
+      </div>
+      <div class="d-pad-row">
+        <div class="left"></div>
+        <div class="centre"></div>
+        <div class="right"></div>
+      </div>
+      <div class="d-pad-row">
+        <div class="down"></div>
+      </div>
+    </article>
+  </body>
+</html>

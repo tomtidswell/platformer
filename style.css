@@ -1,0 +1,480 @@
+* {
+  box-sizing: border-box;
+}
+
+html{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: black;
+  flex-direction: column;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+
+header, section.scoreboard, article.d-pad, section.grid{
+  opacity: 1;
+  transition: opacity 1s;
+  transition-delay: 1s;
+  z-index: 5;
+}
+
+
+
+header{
+  width:540px;
+  height: 165px;
+  margin: 10px;
+  overflow-x: hidden;
+  position: relative;
+
+}
+
+header p{
+    position: relative;
+    left:5px;
+    top:10px;
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0;
+    font-style: italic;
+    font-family: 'Kanit', sans-serif;
+    text-shadow: 0 0 5px #ddd, 0 0 10px #ddd, 0 0 20px blue, 0 0 30px purple, 0 0 40px red, 0 0 55px #49FF18, 0 0 75px #49ff18;
+  }
+  
+header h1{
+    font-family: 'Kanit', sans-serif;
+    font-size: 6em;
+    line-height: 0.7;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+    padding:0;
+    margin: 0;
+    color: white;
+    background: linear-gradient(to bottom, #0075d6 20%,#85b3bf 52%,#424242 54%,#424242 54%,#3d2c09 62%,#914f25 67%,#d337d1 79%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+header h2{
+    position: relative;
+    left:50%;
+    top:-40%;
+    font-family: 'Damion', cursive;
+    margin: 0;
+    color: pink;
+    transform: perspective(350px) rotateY(40deg) rotate(-8deg);
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 10px red, 0 0 10px red, 0 0 20px red, 0 0 30px red;
+  }
+header .pacman-title{
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 20px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #ffd915;
+    clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);
+    animation: 8s linear titleMunch infinite;
+  }
+
+
+
+section.grid{
+  position: relative;
+  background-color: rgba(0,0,0,0.5);
+  box-shadow: -5px -5px 10px white, 5px 5px 100px white ;
+  width: 510px;
+  min-height: 510px;
+  max-width: 510px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+  .squares{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .block{
+    background-color: #d337d1;
+  }
+
+  .message-overlay{
+    position: absolute;
+    line-height: 0.8;
+    letter-spacing: -3px;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 5px #ddd, 0 0 10px #ddd, 0 0 20px blue, 0 0 30px purple;
+  }
+
+  .hide{
+    display: none; 
+  }
+
+  .message{
+    position: relative;
+    z-index: 3;
+    animation: 1s linear messageZoom;
+    font-size: 10em;
+  }
+
+  .message.small{
+    font-size: 1.3em;
+    letter-spacing: 3px;
+  }
+
+
+
+
+
+article.d-pad{
+  display: none;
+  margin: 5px;
+  background-image: url('./assets/dpad.png');
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+div.d-pad-row{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+section.scoreboard {
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: -5px -5px 50px white, 5px 5px 50px white ;
+  width: 510px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+
+}
+.high,
+.score{
+  background: linear-gradient(to bottom, #0075d6 20%, #85b3bf 48%, #3d2c09 53%, #914f25 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Kanit', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lives{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-image: url('./assets/bear.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: 0.2s;
+}
+
+div.grid-item {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  .pill i, 
+  .big-pill i{
+    font-size: 0.5em;
+    color: white;
+    position: absolute;
+    z-index: 1;
+  }
+  .big-pill i{
+    font-size: 1.3em;
+    color: #00c7a7;
+  }
+  .pill.eaten i, 
+  .big-pill.eaten i {
+    opacity: 0;
+    transition: all 0.3s step-end;
+  }
+  
+  .wall{
+    border-radius: 0px;
+    border: 2px solid blue;
+    background-color: black;
+  }
+  .wall:before{
+    content: '';
+    width:100%;
+    height:100%;
+    box-shadow: 3px 3px 15px #a700c7, -3px 3px 15px blue, -3px -3px 15px red;
+  }
+  
+  .prison {
+    background-color: rgba(50,50,50,0.7);
+    border:0;
+  }
+  
+
+
+
+
+.binky:before, 
+.pinky:before, 
+.stinky:before, 
+.clyde:before {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  content: '';
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.pinky:before {
+  background-image: url('./assets/pinky.gif');
+}
+.binky:before {
+  background-image: url('./assets/blinky.gif');
+}
+.stinky:before {
+  background-image: url('./assets/inky.gif');
+}
+.clyde:before {
+  background-image: url('./assets/clyde.gif');
+}
+.pinky.pinky-pilled:before,
+.binky.binky-pilled:before,
+.stinky.stinky-pilled:before,
+.clyde.clyde-pilled:before {
+  background-image: url('./assets/ghost-pilled.gif');
+}
+.pinky.pinky-pilled-ending:before,
+.binky.binky-pilled-ending:before,
+.stinky.stinky-pilled-ending:before,
+.clyde.clyde-pilled-ending:before {
+  background-image: url('./assets/ghost-pilled-ending.gif');
+}
+/* Makes sure we dont have a sprite overlap issue */
+.pacman.pinky.pinky-pilled:before,
+.pacman.binky.binky-pilled:before,
+.pacman.stinky.stinky-pilled:before,
+.pacman.clyde.clyde-pilled:before,
+.pacman.pinky.pinky-pilled-ending:before,
+.pacman.binky.binky-pilled-ending:before,
+.pacman.stinky.stinky-pilled-ending:before,
+.pacman.clyde.clyde-pilled-ending:before {
+  display: none;
+}
+
+.binky-up:before, 
+.pinky-up:before, 
+.stinky-up:before, 
+.clyde-up:before {
+  animation: 0.5s linear ghostSlideUp;
+}
+.binky-down:before, 
+.pinky-down:before, 
+.stinky-down:before, 
+.clyde-down:before {
+  animation: 0.5s linear ghostSlideDown;
+}
+.binky-left:before, 
+.pinky-left:before, 
+.stinky-left:before, 
+.clyde-left:before {
+  animation: 0.5s linear ghostSlideLeft;
+}
+.binky-right:before, 
+.pinky-right:before, 
+.stinky-right:before, 
+.clyde-right:before {
+  animation: 0.5s linear ghostSlideRight;
+}
+
+.pacman:after{
+  content: '';
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ffd915;
+  clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);
+  z-index: 2;
+}
+.pacman.pacman-right:after {
+  transform: rotate(0deg);
+}
+.pacman.pacman-down:after {
+  transform: rotate(90deg);
+}
+.pacman.pacman-left:after {
+  transform: rotate(180deg);
+}
+.pacman.pacman-up:after {
+  transform: rotate(270deg);
+}
+.pacman.dead:after {
+  animation: 2s linear dead;
+  background-color: rgba(255, 217, 21, 0);
+}
+
+
+
+
+
+@keyframes messageZoom {
+  0% {  transform: scale(0.01) rotate(0deg);}
+  100%{ transform: scale(1) rotate(0deg);}
+}
+@keyframes titleMunch {
+  40% {  clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  50%{  clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  60%{ clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+}
+@keyframes slideRight {
+  0% {  transform: translateX(-100%) rotate(0deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  50%{  clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  100%{ transform: translateX(0) rotate(0deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+}
+@keyframes slideDown {
+  0% {  transform: translateY(-100%) rotate(90deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  50%{  clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  100%{ transform: translateY(0) rotate(90deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+}
+@keyframes slideLeft {
+  0% {  transform: translateX(100%) rotate(180deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  50%{  clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  100%{ transform: translateX(0) rotate(180deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+}
+@keyframes slideUp {
+  0% {  transform: translateY(100%) rotate(270deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  50%{  clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  100%{ transform: translateY(0) rotate(270deg);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+}
+@keyframes dead {
+  0% {  background-color: rgba(255, 217, 21, 1);
+        clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  10%{  clip-path: polygon(100% 15%, 50% 50%, 100% 85%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  25%{  clip-path: polygon(75% 0, 50% 50%, 75% 100%, 100% 100%, 0% 100%, 0% 0%, 100% 0%);}
+  75%{  background-color: rgba(255, 217, 21, 1);
+        clip-path: polygon(10% 0, 50% 50%, 10% 100%, 0 100%, 0 100%, 0 0, 0 0);}
+  100%{ background-color: rgba(255, 217, 21, 0);
+        clip-path: polygon(0 50%, 50% 50%, 0 50%, 0 100%, 0 100%, 0 0, 0 0);}
+}
+
+@keyframes ghostSlideRight {
+  0% {  transform: translateX(-100%);}
+  100%{ transform: translateX(0);}
+}
+@keyframes ghostSlideDown {
+  0% {  transform: translateY(-100%);}
+  100%{ transform: translateY(0);}
+}
+@keyframes ghostSlideLeft {
+  0% {  transform: translateX(100%);}
+  100%{ transform: translateX(0);}
+}
+@keyframes ghostSlideUp {
+  0% {  transform: translateY(100%);}
+  100%{ transform: translateY(0);}
+}
+
+@media only screen and (max-width: 600px) {
+  body{
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  header{
+    width: 300px;
+    height: 100px;
+  }
+  header p { font-size: 1em; }
+  header h1 { font-size: 4em; }
+  header h2 {
+    font-size: 1em;
+    left:40%;
+    top:-30%;
+  }
+
+  header .pacman-title {
+    width: 90px;
+    height: 90px;
+  }
+
+  section.loader {
+    width: 100%;
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
+  section.scoreboard {
+    width: 100%;
+    font-size: 1.3em;
+    padding: 5px 10px;
+  }
+
+  section.scoreboard div.grid-item,
+  section.scoreboard div.grid-item:after {
+    width: 20px;
+    height: 20px;
+  }
+
+  section.grid{
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 0;
+  }
+
+  article.d-pad{
+    display: block;
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+  div.grid-item.big-pill i{
+    font-size: 1.3em;
+  }
+}
